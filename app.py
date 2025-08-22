@@ -40,11 +40,20 @@ st.write('The dropoff latitude number is ', dropoff_latitude)
 passenger_count = st.number_input('Passenger count',step=0,format="%i")
 st.write('The passenger count number is ', passenger_count)
 
-
 url = 'https://taxifare.lewagon.ai/predict'
 
-#dict parameters API
 
+def get_map_data():
+    return pd.DataFrame(
+        {
+            'lat': [dropoff_latitude],
+            'lon': [dropoff_longitude]
+        }
+    )
+df = get_map_data()
+st.map(df)
+
+#dict parameters API
 dico_params = {"pickup_datetime" : [pickup_datetime],
                           "pickup_longitude" : [pickup_longitude],
                           "pickup_latitude" : [pickup_latitude],
