@@ -5,40 +5,38 @@ import pandas as pd
 import numpy as np
 
 '''
-# TaxiFareModel front
+# 🚕 TaxiFare
+'''
+
+
+'''
+📍 Rides Parameters
 '''
 
 #date and time
 date = st.date_input(
     "Date",
     datetime.date(2019, 7, 6))
-st.write('The date is:', date)
 
 time = st.time_input('What time is it ', datetime.time(8, 45))
-st.write('Time is', time)
 
 pickup_datetime = f"{date} {time}"
 
 #pickup longitude
 pickup_longitude = st.number_input('Pickup longitude')
-st.write('The pickup longitude number is ', pickup_longitude)
 
 # pickup latitude
 pickup_latitude = st.number_input('Pickup latitude')
-st.write('The pickup latitude number is ', pickup_latitude)
-
 
 #dropoff longitude
 dropoff_longitude = st.number_input('Dropoff longitude')
-st.write('The dropoff longitude number is ',dropoff_longitude)
 
 # dropoff latitude
 dropoff_latitude = st.number_input('Dropoff latitude')
-st.write('The dropoff latitude number is ', dropoff_latitude)
 
 # passenger count
 passenger_count = st.number_input('Passenger count',step=0,format="%i")
-st.write('The passenger count number is ', passenger_count)
+
 
 url = 'https://taxifare.lewagon.ai/predict'
 
@@ -53,6 +51,7 @@ def get_map_data():
 df = get_map_data()
 st.map(df)
 
+
 #dict parameters API
 dico_params = {"pickup_datetime" : [pickup_datetime],
                           "pickup_longitude" : [pickup_longitude],
@@ -64,4 +63,4 @@ dico_params = {"pickup_datetime" : [pickup_datetime],
 
 prediction = requests.get(url=url, params=dico_params).json()
 
-st.write('The prediction is', prediction['fare'])
+st.write('The prediction is $', round(prediction['fare'],2))
