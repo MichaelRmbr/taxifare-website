@@ -7,6 +7,7 @@ import numpy as np
 '''
 # 🚕 TaxiFare
 '''
+
 '''
 📍 Rides Parameters
 '''
@@ -16,7 +17,7 @@ date = st.date_input(
     "Date",
     datetime.date(2019, 7, 6))
 
-time = st.time_input('What time is it ', datetime.time(8, 45))
+time = st.time_input('Time', datetime.time(8, 45))
 
 pickup_datetime = f"{date} {time}"
 
